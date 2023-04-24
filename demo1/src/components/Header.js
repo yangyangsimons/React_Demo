@@ -1,11 +1,11 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import reactLogo from "../images/logo192.png"
 
 export default function Header(){
     return (
       <header>
         <nav className = "nav">
-          <img src="./logo192.png" className = "logo" />
+          <img src={reactLogo} className = "logo" />
           <ul className="nav-items">
             <li>Pricing</li>
             <li>About</li>
