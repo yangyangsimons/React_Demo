@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        function one() {
+            setTimeout(()=>{
+                console.log(111);
+                generator.next();
+            },1000) 
+        }
+        function two() {
+            setTimeout(()=>{
+                console.log(222);
+                generator.next();
+            }, 2000)
+            
+        }
+        function three() {
+            setTimeout(()=>{
+                console.log(333);
+            },3000)
+
+        }
+
+        function * gen() {
+            yield one();
+            yield two();
+            yield three();
+        }
+
+        let generator = gen();
+        generator.next();
+    </script>
+</body>
+</html>
