@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    
+    <style>
+        .request {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+    </style>
 </head>
+
 <body>
+    <button>
+        click and sent request
+    </button>
+    <div class="request"></div>
     <script>
-        function one() {
-            setTimeout(()=>{
-                console.log(111);
-                generator.next();
-            },1000) 
-        }
-        function two() {
-            setTimeout(()=>{
-                console.log(222);
-                generator.next();
-            }, 2000)
-            
-        }
-        function three() {
-            setTimeout(()=>{
-                console.log(333);
-            },3000)
+        // get button element
+        const btn = document.querySelector("button");
+        const request = document.querySelector(".request");
+        // create XMLrequest;
+        btn.onclick = () => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://127.0.0.1:8000/server?t=' + Date.now());
+            xhr.send("this is aaa");
 
-        }
-
-        function * gen() {
-            yield one();
-            yield two();
-            yield three();
+            // get the response from server
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // console.log(xhr);
+                        // console.log(xhr.status);
+                        // console.log(xhr.response);
+                        // console.log(xhr.statusText);
+                        // console.log(xhr.getAllResponseHeaders());
+                        request.innerText = xhr.responseText;
+                    }
+                }
+            }
         }
 
-        let generator = gen();
-        generator.next();
     </script>
+    <script src="encapuslation.js"></script>
 </body>
+
 </html>

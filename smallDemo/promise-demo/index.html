@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Promise Ajax</title>
+    <style>
+        button {
+            border-radius: 10%;
+            border: 1px solid #4444;
+            background-color: rgb(23, 161, 230);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Using promise with Ajax</h1>
+    <button>click send request</button>
+
+    <!-- javascript is below -->
+    <script>
+        const btn = document.querySelector("button");
+        btn.onclick = function() {
+            console.log("click")
+            const promise = new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('Get', 'http://127.0.0.1:8000/server');
+                xhr.send();
+                xhr.onreadystatechange = () => {
+                    console.log(xhr.readyState);
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            resolve(xhr.response);
+                        } else {
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+            promise.then(value => {
+                console.log(value);
+            }, reason => {
+                console.warn(reason);
+            })
+        }
+
+    </script>
+    <script src="encapsulation.js"></script>
+</body>
+
+</html>
