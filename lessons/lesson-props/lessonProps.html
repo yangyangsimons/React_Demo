@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lessonProps</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/javascript" src="../dependencies/react.development.js"></script>
+    <script type="text/javascript" src="../dependencies/react-dom.development.js"></script>
+    <script type="text/javascript" src="../dependencies/prop-types.js"></script>
+    <script type="text/javascript" src="../dependencies/babel.min.js"></script>
+    <script type="text/babel">
+        // // using props in function;
+        // function Person(props) {
+        //     return (
+        //         <ul>
+        //             <li>name: {props.name}</li>
+        //             <li>age: {props.age}</li>
+        //             <li>sex: {props.sex}</li>    
+        //         </ul>
+        //     );
+        // }
+        // Person.propTypes = {
+        //     name: PropTypes.string.isrequired,
+        //     age: PropTypes.number
+        // }
+        // const p = {name: "simons", age: 31, sex: "male"}
+        // ReactDOM.render(<Person {...p}/>, document.getElementById('root'));
+
+        // using props in class Component;
+        class LoginForm extends React.Component {
+            state = { username: '', password: '' }
+            saveData = (dataName) => {
+                return (event) => {
+                    this.setState({[dataName]: event.target.value});
+                    console.log(this.myRef.current);
+                    console.log(dataName, this.state[dataName]);
+                }
+            }
+            myRef = React.createRef();
+            render() {
+                return (
+                    <form>
+                        Username: <input ref={this.myRef} type="text" name="username" />
+                        Password: <input onChange={this.saveData('password')} type="text" name="password" />
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<LoginForm/>, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

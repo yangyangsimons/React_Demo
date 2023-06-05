@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classComponent</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/javascript" src="../dependencies/react.development.js"></script>
+    <script type="text/javascript" src="../dependencies/react-dom.development.js"></script>
+    <script type="text/javascript" src="../dependencies/babel.min.js"></script>
+    <script type="text/babel">
+        class MyComponent extends React.Component{
+            render() {
+                const data = [1,2,3];
+                console.log(this);
+                return (
+                    <div>
+                        {
+                            data.map((value,index) => {
+                                return <li key={index}>{value} </li>;
+                            })
+                        }
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<MyComponent/>, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
