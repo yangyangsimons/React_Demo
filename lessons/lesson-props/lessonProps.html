@@ -6,6 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lessonProps</title>
+    <style>
+        .newsContainer {
+            height: 150px;
+            width: 100px;
+            overflow: auto;
+            background-color: #345;
+        }
+        .newsContainer li {
+            height: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,45 +26,36 @@
     <script type="text/javascript" src="../dependencies/prop-types.js"></script>
     <script type="text/javascript" src="../dependencies/babel.min.js"></script>
     <script type="text/babel">
-        // // using props in function;
-        // function Person(props) {
-        //     return (
-        //         <ul>
-        //             <li>name: {props.name}</li>
-        //             <li>age: {props.age}</li>
-        //             <li>sex: {props.sex}</li>    
-        //         </ul>
-        //     );
-        // }
-        // Person.propTypes = {
-        //     name: PropTypes.string.isrequired,
-        //     age: PropTypes.number
-        // }
-        // const p = {name: "simons", age: 31, sex: "male"}
-        // ReactDOM.render(<Person {...p}/>, document.getElementById('root'));
-
-        // using props in class Component;
-        class LoginForm extends React.Component {
-            state = { username: '', password: '' }
-            saveData = (dataName) => {
-                return (event) => {
-                    this.setState({[dataName]: event.target.value});
-                    console.log(this.myRef.current);
-                    console.log(dataName, this.state[dataName]);
-                }
+        class NewsList extends React.Component {
+            state = { newsArr: [] };
+            componentDidMount() {
+                this.timer = setInterval(() => {
+                    const newsItem = `News ${this.state.newsArr.length + 1}`
+                    this.setState({newsArr: [newsItem,...this.state.newsArr]})
+                },1000)
             }
             myRef = React.createRef();
+            
+            // get the current height;
+            getSnapshotBeforeUpdate(prevProps, prevState) {
+                return this.myRef.current.scrollHeight;
+            }
+            
+            componentDidUpdate(prevProps, prevState, height) {
+                this.myRef.current.scrollTop += this.myRef.current.scrollHeight - height
+            }
+
             render() {
                 return (
-                    <form>
-                        Username: <input ref={this.myRef} type="text" name="username" />
-                        Password: <input onChange={this.saveData('password')} type="text" name="password" />
-                    </form>
+                    <div className="newsContainer" ref={this.myRef}>
+                        {this.state.newsArr.map((newsItem,index) => {
+                            return <li key={index} >{newsItem}</li>
+                        })}
+                    </div>
                 )
             }
         }
-
-        ReactDOM.render(<LoginForm/>, document.getElementById('root'));
+        ReactDOM.render(<NewsList />, document.getElementById('root'));
     </script>
 </body>
 
