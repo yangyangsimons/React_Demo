@@ -1,0 +1,33 @@
+footer {
+    height: 150px;
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items:center;
+    input {
+        width: 320px;
+        height: 30px;
+        border: 1px solid rgba(26, 184, 219, 0.85);
+        border-radius: 10px;
+    }
+    .controller {
+        width: 320px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            height: 40px;
+            width: 106px;
+            color: #ffffff;
+            border-radius: 20px;
+        }
+        .add {
+            background-color: #1ab8db;
+            border: 1px solid #1ab8db;
+        }
+        .delete {
+            background-color: #ff0000;
+            border: 1px solid #ffffff;
+        }
+    }
+}
