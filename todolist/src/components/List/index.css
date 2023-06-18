@@ -90,9 +90,8 @@ input {
   height: 360px;
 }
 .main .taskList .info.selected {
-  background-color: #d9d9d9;
   border: 1px solid #d9d9d9;
-  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
 }
 .main .taskList .info {
   transition: transform 500ms;

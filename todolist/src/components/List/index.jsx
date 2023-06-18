@@ -7,8 +7,7 @@ export default class List extends Component {
       this.props.updateTodo(id, event.target.checked)
     }
   }
-  isChecked = false;
-  
+   
   selectAll = (event) => {
     return this.props.selectAll(event.target.checked);
   }
