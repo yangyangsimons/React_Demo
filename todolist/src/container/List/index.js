@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './index.css';
 
 export default function List(props) {
-  console.log(props.todos.length);
+  const selectAllRef = useRef();
+
   function updateTodo(id) {
-    console.log(id);
-    return props.updateTodo(id);
+    return props.dispatch({type:"UPDATE", payload: {id}});
+  }
+  function selectAll() {
+    console.log(selectAllRef.current.checked);
+    return props.dispatch({type: "SELECTALL", payload: {done: selectAllRef.current.checked}});
   }
 
+  const countDone = props.todos.reduce((pre,cur) => {
+    pre += cur.done ? 1 : 0;
+    return pre;
+  }, 0)
+  console.log(countDone);
   return (
     <div className='main'>
       <div className="banner">
@@ -16,7 +25,7 @@ export default function List(props) {
       </div>
       <ul>
         <li className='infoContainer'>
-          <input type="checkbox" />
+          <input type="checkbox" checked={(props.todos.length === countDone && props.todos.length !== 0) ? true : false} onChange={selectAll} ref={selectAllRef}/>
           <span>Task</span><span>Date</span>
         </li>
       </ul>
@@ -28,7 +37,7 @@ export default function List(props) {
             const { id, text, date, done } = todoObj;
             return (
               <li className={`info ${done ? 'selected' : ''}`} key={id}>
-                <input type='checkbox' onChange={() => {updateTodo(id)}} />
+                <input type='checkbox' checked = {done ? true : false} onChange={() => {updateTodo(id)}} />
                 <span className='task'>{text}</span>
                 <span className='date'>{date}</span>
               </li>

@@ -4,7 +4,7 @@ export default class List extends Component {
 
   handleCheck = (id) => {
     return (event) => {
-      this.props.updateTodo(id, event.target.checked)
+      this.props.updateTodo(id, event.target.checked);
     }
   }
    

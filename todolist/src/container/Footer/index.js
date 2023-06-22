@@ -5,16 +5,19 @@ export default function Footer(props) {
   function addTodo() {
     const text = inputRef.current.value;
     inputRef.current.value = '';
-    return props.addTodo(text);
+    return props.dispatch({
+      type: "ADD",
+      payload: {text}
+    });
   }
   function deleteTodo() {
-    return props.deleteTodo();
+    return props.dispatch({type: "DELETE"});
   }
   return (
     <footer>
       <input type="text" placeholder="Please enter your task and Add" ref={inputRef} />
       <div className="controller">
-        <button className='add' onClick={addTodo} >Add</button>
+        <button className='add' onClick={addTodo}>Add</button>
         <button className='delete' onClick={deleteTodo}>Delete</button>
       </div>
     </footer>
