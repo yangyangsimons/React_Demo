@@ -5,6 +5,8 @@ import Footer from './container/Footer/index';
 import List from './container/List/index';
 
 export default function App() {
+
+    const [todos, setTodos] = useState([])
     function updateTodo(id) {
         const newTodos = todos.map((todoObj) => {
             if (id === todoObj.id) {
@@ -17,7 +19,8 @@ export default function App() {
     }
     function addTodo(text) {
         setTodos((preTodos) => {
-            const id = preTodos[preTodos.length - 1].id + 1;
+            console.log("preTodos", preTodos);
+            const id = preTodos.length !== 0 ? preTodos[preTodos.length - 1].id + 1 : 0;
             const date = new Date().toLocaleDateString()
             const newTodo = 
             {
@@ -39,7 +42,6 @@ export default function App() {
         })
     }
 
-    const [todos, setTodos] = useState([{ id: 0, text: "This is the best day", date: "June 2023", done: false }])
     return (
         <div>
             <Header />

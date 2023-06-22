@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.css';
+
 export default function List(props) {
+  console.log(props.todos.length);
   function updateTodo(id) {
     console.log(id);
     return props.updateTodo(id);
@@ -20,6 +22,8 @@ export default function List(props) {
       </ul>
       <ul className="taskList">
         {
+          props.todos.length === 0 ? 
+          <h3>what do you want to do today?</h3> :
           props.todos.map((todoObj) => {
             const { id, text, date, done } = todoObj;
             return (

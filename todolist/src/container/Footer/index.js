@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import './index.css';
 export default function Footer(props) {
-  console.log(props);
   const inputRef = useRef();
   function addTodo() {
     const text = inputRef.current.value;
