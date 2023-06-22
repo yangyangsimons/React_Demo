@@ -25,7 +25,7 @@ export default class List extends Component {
         </div>
         <ul>
           <li className='infoContainer'>
-            <input type="checkbox" checked={doneCount === total ? true : false} onChange={this.selectAll}/>
+            <input type="checkbox" checked={(doneCount === total && doneCount !== 0) ? true : false} onChange={this.selectAll}/>
             <span>Date</span><span>Task</span>
           </li>
         </ul>

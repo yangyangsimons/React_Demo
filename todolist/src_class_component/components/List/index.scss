@@ -1,0 +1,84 @@
+@use "../../reset.scss";
+@mixin checkBox {
+    transform: scale(1.5);
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-left: 10px;
+}
+@mixin item {
+    height: 45px;
+    border-radius: 4px;
+    background-color: #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin text {
+    height: 20px;
+    line-height: 20px;
+}
+.main {
+    font-family: Montserrat;
+    font-size: 15px;
+    .banner {
+        height: 50px;
+        border-bottom: 1px dashed rgba(34, 34, 34, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+        span {
+            margin: 13px;
+        }
+
+        .selectAll {
+            color: #1ab8db;
+        }
+    }
+    // info container style;
+    .infoContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        @include item;
+        background-color: #d9d9d9;
+
+        input {
+            @include checkBox;
+        }
+        span {
+            @include text;
+            margin-right: 64px;
+        }
+    }
+    .taskList {
+        overflow: scroll;
+        height: 360px;
+        .info.selected{
+            border: 1px solid #d9d9d9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+        }
+        .info {
+            transition: transform 500ms;
+            @include item;
+            margin-bottom: 10px;
+            font-size: 16px;
+            input {
+                @include checkBox;
+            }
+            .date {
+                width: 87px;
+                color: rgba(34, 34, 34, 0.7);
+            }
+            .task {
+                width: 136px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-right: 34px;
+                color: rgba(0, 0, 0, 0.9);
+                @include text;
+            }
+        }
+    }
+}

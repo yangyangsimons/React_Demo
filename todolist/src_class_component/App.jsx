@@ -6,11 +6,7 @@ import './App.css';
 
 export default class App extends Component {
   state = {todos: [
-    {id: 0, text: 'task1XXXXXXXXXXXXXXXXXX', date: '11 June 2023', done: false},
-    {id: 1, text: 'task2XXXXXXXXXXXXXXXXXX', date: '11 June 2023', done: false},
-    {id: 2, text: 'task3XXXXXXXXXXXXXXXXXX', date: '11 June 2023', done: false},
-    {id: 3, text: 'task4XXXXXXXXXXXXXXXXXX', date: '11 June 2023', done: false},
-    {id: 4, text: 'task5XXXXXXXXXXXXXXXXXX', date: '11 June 2023', done: false}
+    {id: 0, text: 'You are the best,keep going', date: 'Today', done: false}
   ]}
   // update the checked item;
   updateTodo = (id, done) => {
