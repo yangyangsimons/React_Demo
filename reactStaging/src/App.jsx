@@ -9,7 +9,7 @@ const myInit = {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"
+        "Authorization": "Bearer OPENAI_API_KEY"
     },
     body: JSON.stringify(body)
 }
