@@ -1,14 +1,31 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
-class App extends React.Component {
-
-    render() {
-        return (
-            <div>
-                Hello, react!
-            </div>
-        )
-    }
+const body = {
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": "what am I asking?"}]
 }
 
-export default App;
+const myInit = {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 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"
+    },
+    body: JSON.stringify(body)
+}
+export default function App() {
+
+    useEffect(() => {
+        const res = fetch("https://api.openai.com/v1/chat/completions", myInit)
+        res.then((result) => {
+            return result.json()
+        }).then(result => {
+            console.log(result.choices[0].message.content);
+        })
+    })
+    return (
+        <Fragment>
+            this is a chagpt test
+        </Fragment>
+    )
+}
